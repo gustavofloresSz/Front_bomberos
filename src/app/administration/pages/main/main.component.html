@@ -1,0 +1,65 @@
+<div class="flex h-screen">
+  <mat-drawer-container class="flex-1">
+
+    <!-- SIDENAV -->
+    <mat-drawer #drawer mode="side" class="w-64 p-0">
+      <div class="h-full bg-[#264d27] text-white flex flex-col">
+        <div class="p-4 flex justify-center">
+          <img src="assets/logoR.png" alt="Logo" class="h-32 object-contain" />
+        </div>
+
+        <nav class="space-y-2 px-2">
+          <a *ngIf="miRol === 'administrador'" [routerLink]="['/main/seccion']" class="flex items-center p-3 rounded hover:bg-green-800 transition">
+            <span class="material-icons mr-4">folder</span>
+            <span class="text-white text-base">Secciones</span>
+          </a>
+          <a *ngIf="miRol === 'administrador'" [routerLink]="['/main/users']" class="flex items-center p-3 rounded hover:bg-green-800 transition">
+            <span class="material-icons mr-4">people</span>
+            <span class="text-white text-base">Usuarios</span>
+          </a>
+          <a [routerLink]="['/main/imbox']" class="flex items-center p-3 rounded hover:bg-green-800 transition">
+            <span class="material-icons mr-4">chat</span>
+            <span class="text-white text-base">Conversaciones</span>
+          </a>
+          <a [routerLink]="['/main/simb-viewer']" class="flex items-center p-3 rounded hover:bg-green-800 transition">
+            <span class="material-icons mr-4">map</span>
+            <span class="text-white text-base">Focos de calor</span>
+          </a>
+        </nav>
+      </div>
+    </mat-drawer>
+
+    <!-- MAIN CONTENT -->
+    <mat-drawer-content>
+      <div class="flex flex-col h-full">
+
+        <!-- NAVBAR -->
+        <header class="bg-[#264d27] text-white p-4 flex items-center">
+          <button class="p-2 hover:bg-green-800 material-icons" (click)="drawer.toggle()">menu</button>
+          <h1 class="ml-4 text-lg font-bold">Unidad personal</h1>
+          <div class="flex-1"></div>
+
+          <button mat-icon-button cdkOverlayOrigin #trigger="cdkOverlayOrigin" (click)="isOpen = !isOpen">
+            <mat-icon class="text-yellow-300">account_circle</mat-icon>
+          </button>
+        </header>
+
+        <!-- PROFILE OVERLAY -->
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayOrigin]="trigger"
+          [cdkConnectedOverlayOpen]="isOpen"
+          (overlayOutsideClick)="isOpen = false">
+          <div class="overlay p-3 sm:w-[400px] bg-yellow-200 shadow-lg rounded">
+            <profile />
+          </div>
+        </ng-template>
+
+        <!-- MAIN VIEW -->
+        <div class="flex-1 p-6 bg-[#1e3b20] text-white">
+          <router-outlet />
+        </div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

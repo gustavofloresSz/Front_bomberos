@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>
+  {{ modo === 'crear' ? 'Agregar Sección' : modo === 'editar' ? 'Editar Sección' : 'Eliminar Sección' }}
+</h2>
+
+<div mat-dialog-content>
+  <!-- Eliminar -->
+  <div *ngIf="modo === 'eliminar'" class="text-center p-4">
+    <p class="text-lg">
+      ¿Estás seguro de que deseas eliminar la sección <strong>{{ data.seccion.name }}</strong>?
+    </p>
+  </div>
+
+  <!-- Crear y Editar -->
+  <form *ngIf="modo === 'editar' || modo === 'crear'" [formGroup]="form" class="space-y-4 p-4">
+    <mat-form-field  class="w-full">
+      <mat-label>Nombre de la sección</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions class="flex justify-end gap-2 px-4 pb-4">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+
+  <button
+    mat-flat-button
+    color="warn"
+    *ngIf="modo === 'eliminar'"
+    (click)="confirmarEliminacion()"
+  >
+    Eliminar
+  </button>
+
+  <button
+    mat-flat-button
+    color="primary"
+    *ngIf="modo === 'editar' || modo === 'crear'"
+    (click)="confirmarEdicion()"
+    [disabled]="form.invalid"
+  >
+    {{ modo === 'crear' ? 'Agregar' : 'Guardar' }}
+  </button>
+</div>

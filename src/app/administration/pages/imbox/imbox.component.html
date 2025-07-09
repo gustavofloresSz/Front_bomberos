@@ -1,0 +1,104 @@
+<div class="p-4 h-[calc(100vh-150px)] flex flex-col">   
+  <div class="flex justify-between items-center mb-4">     
+    <h2 class="text-xl font-semibold text-white">Bandeja de Entrada</h2>     
+    <button type="button" mat-flat-button color="primary" (click)="openNewChatDialog()">      
+      <mat-icon>chat</mat-icon>       
+      Nueva Conversación     
+    </button>   
+  </div>    
+
+  <div class="relative w-full mb-4">     
+    <span class="absolute inset-y-0 left-0 flex items-center pl-3">       
+      <mat-icon class="text-gray-500">search</mat-icon>     
+    </span>     
+    <input       
+      type="text"       
+      [(ngModel)]="busqueda"       
+      placeholder="Buscar chat por nombre"       
+      class="pl-10 pr-4 py-2 border text-black rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400"     
+    />     
+    <button       
+      *ngIf="busqueda"       
+      type="button"       
+      (click)="limpiarBusqueda()"       
+      class="absolute inset-y-0 right-0 flex items-center pr-3"       
+      aria-label="Limpiar búsqueda"     
+    >       
+      <mat-icon class="text-gray-500 transition">close</mat-icon>     
+    </button>   
+  </div>    
+
+  <!-- Lista estilo WhatsApp -->   
+  <div class="overflow-y-auto flex-1 bg-white rounded-lg border">     
+    <ng-container *ngIf="usuarios.length > 0; else sinUsuarios">       
+      <div *ngFor="let usuario of usuarios; let last = last"             
+           [class.hidden]="!coincideBusqueda(usuario)"            
+           class="hover:bg-yellow-100 cursor-pointer transition-colors px-4 py-3"            
+           [class.border-b]="!last"            
+           [class.border-gray-100]="!last"            
+           (click)="abrirChat(usuario.id)">                  
+        
+        <div class="flex items-center space-x-3">           
+          <!-- Avatar -->           
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-green-700 flex items-center justify-center text-white font-medium text-sm flex-shrink-0">             
+            {{ usuario.name.charAt(0) }}{{ usuario.name.split(' ')[1]?.charAt(0) || '' }}           
+          </div>            
+    
+          <div class="flex-1 min-w-0">             
+            <!-- Línea superior: Nombre y fecha -->             
+            <div class="flex justify-between items-center mb-1">               
+              <h3 class="font-medium text-gray-900 text-base truncate">{{ usuario.name }}</h3>               
+              <span class="text-xs text-gray-500 flex-shrink-0 ml-2">                 
+                {{ usuario.fecha_envio | date:'dd/MM/yy' }}
+              </span>               
+            </div>                          
+
+            <!-- Línea inferior: Último mensaje, ícono y hora -->             
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2 flex-1 min-w-0">
+                <!-- Condición: Solo archivo sin mensaje -->
+                <ng-container *ngIf="!usuario.mensage && usuario.archivos?.length > 0">
+                  <mat-icon class="text-gray-400 text-base flex-shrink-0">description</mat-icon>
+                  <p class="text-sm text-gray-600 truncate">{{ usuario.archivos[0]?.name_original || 'Archivo enviado' }}</p>
+                </ng-container>
+
+                <!-- Condición: Mensaje + archivo -->
+                <ng-container *ngIf="usuario.mensage && usuario.archivos?.length > 0">
+                  <p class="text-sm text-gray-600 truncate">
+                    {{ usuario.mensage.length > 55 ? (usuario.mensage | slice:0:55) + '...' : usuario.mensage }}
+                  </p>
+                  <mat-icon class="text-gray-400 text-base flex-shrink-0">description</mat-icon>
+                </ng-container>
+
+                <!-- Condición: Solo mensaje -->
+                <ng-container *ngIf="usuario.mensage && (!usuario.archivos || usuario.archivos.length === 0)">
+                  <p class="text-sm text-gray-600 truncate">
+                    {{ usuario.mensage.length > 55 ? (usuario.mensage | slice:0:55) + '...' : usuario.mensage }}
+                  </p>
+                </ng-container>
+              </div>
+
+              <span class="text-xs text-gray-400 ml-2 flex-shrink-0">
+                {{ usuario.fecha_envio | date:'h:mm a' }}
+              </span>
+            </div>
+         
+          </div>            
+
+          <!-- Flecha -->           
+          <div class="flex-shrink-0 ml-2">             
+            <mat-icon class="text-gray-400 text-lg">chevron_right</mat-icon>           
+          </div>         
+        </div>       
+      </div>     
+    </ng-container>      
+
+    <ng-template #sinUsuarios>       
+      <div class="flex flex-col items-center justify-center py-12 text-gray-500">         
+        <mat-icon class="text-5xl mb-3 text-gray-300">chat_bubble_outline</mat-icon>         
+        <p class="text-base font-medium mb-1">No hay conversaciones</p>         
+        <p class="text-sm text-gray-400">Inicia una nueva conversación</p>       
+      </div>     
+    </ng-template>   
+  </div> 
+</div>

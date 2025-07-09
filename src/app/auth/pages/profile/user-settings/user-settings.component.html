@@ -1,0 +1,83 @@
+<div class="p-6 max-w-md mx-auto bg-white rounded-lg shadow-lg">
+  <h2 class="text-xl font-bold text-center mb-6 text-green-900">
+    Cambiar Contraseña
+  </h2>
+
+  <form (ngSubmit)="cambiarContrasena()" #form="ngForm" class="space-y-6">
+    <!-- Contraseña actual -->
+    <mat-form-field class="w-full">
+      <mat-label class="text-green-900">Contraseña actual</mat-label>
+      <input
+        matInput
+        [type]="showCurrentPassword ? 'text' : 'password'"
+        name="currentPassword"
+        required
+        [(ngModel)]="currentPassword"
+        #current="ngModel"
+      />
+      <button
+        type="button"
+        mat-icon-button
+        matSuffix
+        (click)="verCurrentPassword()"
+        [attr.aria-label]="showCurrentPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+        [attr.aria-pressed]="showCurrentPassword"
+      >
+        <mat-icon>{{ showCurrentPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+      </button>
+      <mat-error *ngIf="current.invalid && current.touched" class="text-red-600">
+        La contraseña actual es obligatoria
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Nueva contraseña -->
+    <mat-form-field class="w-full">
+      <mat-label class="text-green-900">Nueva contraseña</mat-label>
+      <input
+        matInput
+        [type]="showNewPassword ? 'text' : 'password'"
+        name="newPassword"
+        required
+        minlength="6"
+        [(ngModel)]="newPassword"
+        #newPass="ngModel"
+      />
+      <button
+        type="button"
+        mat-icon-button
+        matSuffix
+        (click)="verNewPassword()"
+        [attr.aria-label]="showNewPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+        [attr.aria-pressed]="showNewPassword"
+      >
+        <mat-icon>{{ showNewPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      <mat-error *ngIf="newPass.errors?.['required'] && newPass.touched" class="text-red-600">
+        La nueva contraseña es obligatoria
+      </mat-error>
+      <mat-error *ngIf="newPass.errors?.['minlength'] && newPass.touched" class="text-red-600">
+        Debe tener al menos 6 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Mensaje -->
+    <div *ngIf="mensaje" class="text-sm text-center font-medium" [ngClass]="{
+      'text-green-700': exito,
+      'text-red-600': !exito
+    }">
+      {{ mensaje }}
+    </div>
+
+    <!-- Botón -->
+    <div class="flex justify-center">
+      <button
+        type="submit"
+        mat-flat-button
+        [disabled]="form.invalid"
+        class="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold px-6 py-2 rounded shadow"
+      >
+        Cambiar Contraseña
+      </button>
+    </div>
+  </form>
+</div>

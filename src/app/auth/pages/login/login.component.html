@@ -1,0 +1,48 @@
+<div class="min-h-screen flex items-center justify-center bg-cover bg-center" 
+     style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/img21.jpg');">
+
+    <div class="shadow-lg rounded-lg p-8 bg-white bg-opacity-90 mx-4 w-full sm:w-[400px]">
+        <div class="text-center mb-6">
+            <img src="assets/logoR.png" alt="Logo Bomberos Forestales" 
+                 class="mx-auto h-32 w-auto mb-4 object-contain">
+            <h1 class="text-2xl font-bold text-gray-800">Bomberos Forestales</h1>
+            <p class="text-gray-600">Inicio de sesión</p>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
+            <div class="mb-4">
+                <mat-form-field class="w-full">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput formControlName="login" />
+                    <mat-icon matPrefix class="text-gray-500 mr-2">person</mat-icon>
+                </mat-form-field>
+            </div>
+
+            <div class="mb-6">
+                <mat-form-field class="w-full">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" />
+                    <mat-icon matPrefix class="text-gray-500 mr-2">lock</mat-icon>
+                    <button type="button" mat-icon-button matSuffix (click)="verPassword()"
+                        [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+                        <mat-icon>{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+
+            <button type="submit" mat-flat-button
+                class="w-full bg-blue-600 text-white hover:bg-blue-700 py-2"
+                [disabled]="loginForm.invalid">
+                <div class="flex items-center justify-center gap-2">
+                    <mat-icon>login</mat-icon>
+                    <span>Ingresar</span>
+                </div>
+            </button>
+
+            <div *ngIf="loginError" class="mt-4 p-3 bg-red-50 text-red-600 text-sm rounded text-center flex items-center justify-center gap-2">
+                <mat-icon class="text-red-500 text-sm">error</mat-icon>
+                {{ loginError }}
+            </div>
+        </form>
+    </div>
+</div>

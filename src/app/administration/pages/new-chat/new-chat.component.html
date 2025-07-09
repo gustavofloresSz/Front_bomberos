@@ -1,0 +1,49 @@
+<div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-xl">
+  <h2 class="text-xl font-semibold text-gray-800 mb-6 text-center">Nueva Conversación</h2>
+
+  <div class="relative mb-4">
+    <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+      <mat-icon class="text-gray-500">person_search</mat-icon>
+    </span>
+    <input
+      type="text"
+      [(ngModel)]="usuarioBuscado"
+      (input)="filtrarUsuariosPorNombre()"
+      placeholder="Buscar usuario"
+      class="pl-10 pr-10 py-2 border rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+    <button
+      *ngIf="usuarioBuscado"
+      type="button"
+      (click)="limpiarBusquedaUsuario()"
+      class="absolute inset-y-0 right-0 flex items-center pr-3"
+      aria-label="Limpiar búsqueda usuario"
+    >
+      <mat-icon class="text-gray-500">close</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="sugerenciasUsuarios.length > 0"
+       class="mb-4 border rounded w-full shadow max-h-48 overflow-y-auto">
+    <ul>
+      <li
+        *ngFor="let user of sugerenciasUsuarios"
+        (click)="seleccionarUsuario(user)"
+        class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+      >
+        {{ user.name }} - {{ user.seccion?.name }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="flex justify-end gap-2 mt-4">
+    <button mat-button color="warn" type="button" (click)="closeDialog()">Cancelar</button>
+    <button 
+      mat-raised-button 
+      color="primary" 
+      type="submit" 
+      (click)="iniciarChat()"
+      [disabled]="!receptorSeleccionado"
+      >Iniciar</button>
+  </div>
+</div>

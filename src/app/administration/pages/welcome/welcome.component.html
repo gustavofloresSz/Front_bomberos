@@ -1,0 +1,165 @@
+<header class="w-full flex justify-between items-center px-6 py-4 bg-[#264d27] text-white shadow-lg">
+  <div class="flex items-center gap-4">
+    <img src="assets/logoR.png" alt="Escudo del Batallón" class="h-28 w-auto object-contain">
+    <div>
+      <h1 class="text-xl font-bold leading-tight">BATALLÓN DE BOMBEROS FORESTALES</h1>
+      <p class="text-sm">"Chiquitania - Protegiendo Nuestros Bosques"</p>
+    </div>
+  </div>
+  <button mat-flat-button color="primary" [routerLink]="['/main/seccion']" class="flex items-center transition">
+    <span class="material-icons mr-2">login</span>
+    Iniciar Sesión
+  </button>
+</header>
+
+<section class="relative h-96 bg-cover bg-center flex items-center justify-center text-white text-center px-4"
+         style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/img21.jpg')">
+  <div>
+    <h2 class="text-4xl font-bold mb-4">UNIDAD ESPECIALIZADA EN COMBATE DE INCENDIOS FORESTALES</h2>
+    <p class="text-xl">Compromiso, Valor y Protección Ambiental</p>
+  </div>
+</section>
+
+<main class="bg-[#1e3b20] py-12 px-6 text-white">
+
+  <!-- Valores -->
+  <section class="max-w-6xl mx-auto mb-12 bg-[#264d27] p-8 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold mb-8 text-center border-b-2 border-yellow-400 pb-4">Nuestros Valores</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="bg-yellow-50 p-4 border-yellow-500 rounded-lg text-center transition-transform hover:scale-105">
+        <span class="material-icons text-green-700 text-5xl">workspace_premium</span>
+        <h3 class="mt-4 text-xl font-bold text-gray-800">Disciplina</h3>
+        <p class="mt-2 text-gray-600">Rigor y orden en cada acción</p>
+      </div>
+      <div class="bg-blue-50 p-6 rounded-lg text-center transition-transform hover:scale-105">
+        <span class="material-icons text-blue-700 text-5xl">flash_on</span>
+        <h3 class="mt-4 text-xl font-bold text-gray-800">Rapidez</h3>
+        <p class="mt-2 text-gray-600">Respuesta inmediata ante emergencias</p>
+      </div>
+      <div class="bg-yellow-50 p-6 rounded-lg text-center transition-transform hover:scale-105">
+        <span class="material-icons text-yellow-700 text-5xl">people</span>
+        <h3 class="mt-4 text-xl font-bold text-gray-800">Cooperación</h3>
+        <p class="mt-2 text-gray-600">Trabajo en equipo interinstitucional</p>
+      </div>
+      <div class="bg-red-50 p-6 rounded-lg text-center transition-transform hover:scale-105">
+        <span class="material-icons text-red-700 text-5xl">volunteer_activism</span>
+        <h3 class="mt-4 text-xl font-bold text-gray-800">Compromiso</h3>
+        <p class="mt-2 text-gray-600">Con nuestro medio ambiente y país</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Historia -->
+  <section class="max-w-6xl mx-auto bg-[#264d27] p-8 rounded-lg shadow-lg border-l-4 border-yellow-400 mb-12">
+    <h2 class="text-3xl font-bold mb-6 text-yellow-300 flex items-center gap-3">
+      <span class="material-icons text-yellow-400">history_edu</span> Nuestra Historia
+    </h2>
+    <div class="flex flex-col md:flex-row gap-8">
+      <div class="md:w-1/2 space-y-4 border-l-2 border-yellow-400 pl-6">
+        <p class="text-gray-100 text-justify">
+          El <strong class="text-yellow-400">Batallón de Bomberos Forestales del Ejército (BBFE)</strong> fue creado mediante la 
+          <strong>Resolución Administrativa N°51/25 del Comando General del Ejército</strong>, aprobada el 
+          23 de mayo de 2025, con dependencia del Regimiento de Infantería - 10 "Gral. Ignacio Warnes".
+        </p>
+        <p class="text-gray-100 text-justify">
+          Su creación responde a la necesidad urgente de fortalecer la capacidad de respuesta del Estado 
+          ante los recurrentes incendios forestales que han afectado severamente la Chiquitanía boliviana, 
+          una vasta región de bosque tropical ubicada en el departamento de Santa Cruz, causando daños 
+          ambientales, económicos y sociales significativos.
+        </p>
+        <p class="text-gray-100 text-justify">
+          La formación de esta unidad especializada está respaldada por un marco constitucional, legal y 
+          estratégico que refuerza su necesidad y pertinencia, constituyéndose como un componente esencial 
+          para garantizar la seguridad de la población, la conservación del medio ambiente y la respuesta 
+          eficaz ante incendios forestales en Bolivia.
+        </p>
+        <p class="text-gray-100 text-justify">
+          El BBFE se constituye como una <strong class="text-yellow-400">Unidad Multifuncional</strong> con capacidad operativa 
+          contra incendios forestales, equipada para realizar patrullajes preventivos y de reconocimiento, 
+          concientización comunitaria, tareas de prevención y mitigación, búsqueda, rescate, evacuación 
+          y asistencia humanitaria, integrando operaciones especializadas con cobertura estratégica operacional.
+        </p>
+      </div>
+      <div class="md:w-1/2 flex flex-col gap-4">
+        <img src="assets/img18.jpg" alt="Equipo histórico" class="w-full rounded-lg shadow-md h-auto">
+        <div class="bg-green-900 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+          <h4 class="font-bold text-yellow-300 mb-2 flex items-center gap-2">
+            <span class="material-icons text-yellow-400">gavel</span> Fundamentos Legales
+          </h4>
+          <p class="text-sm text-gray-100">
+            Basado en la Constitución Política del Estado (Arts. 9, 108, 244, 245), 
+            Ley N° 1405 (Ley Orgánica de las Fuerzas Armadas) y el marco normativo 
+            que establece la misión fundamental de las FF.AA. en la protección del 
+            medio ambiente y cooperación en el desarrollo integral del país.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Misión -->
+  <section class="max-w-6xl mx-auto bg-[#264d27] p-8 rounded-lg shadow-lg border-l-4 border-yellow-400 mb-12">
+    <h2 class="text-3xl font-bold mb-6 text-yellow-300 flex items-center gap-3">
+      <span class="material-icons text-yellow-400">assistant_photo</span> Misión
+    </h2>
+    <div class="flex flex-col md:flex-row-reverse gap-8">
+      <div class="md:w-1/2">
+        <img src="assets/img21.jpg" alt="Operación en terreno" class="w-full rounded-lg shadow-md h-80 object-cover">
+      </div>
+      <div class="md:w-1/2 space-y-6">
+        <p class="text-gray-100 text-justify">
+          El Batallón de Bomberos Forestales 1 “Chiquitania” tiene la misión de prevenir, detectar, combatir y controlar incendios forestales en la región oriental del país, con énfasis en la Chiquitania, a través del despliegue de personal militar capacitado, uso de técnicas especializadas, coordinación interinstitucional y protección de los recursos naturales, la biodiversidad y la vida humana. Asimismo, apoya en la gestión de riesgos y atención de desastres, reforzando la presencia activa del Ejército en labores de defensa ambiental.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-yellow-50 p-4 border-yellow-500 rounded-lg shadow border hover:shadow-lg transition">
+            <span class="material-icons text-blue-700 text-4xl">local_fire_department</span>
+            <h3 class="font-semibold mt-2 text-yellow-400">Combate de Incendios</h3>
+          </div>
+          <div class="bg-yellow-50 p-4 border-yellow-500 rounded-lg shadow border hover:shadow-lg transition">
+            <span class="material-icons text-green-700 text-4xl">nature</span>
+            <h3 class="font-semibold mt-2 text-yellow-400">Protección Ambiental</h3>
+          </div>
+          <div class="bg-yellow-50 p-4 border-yellow-500 rounded-lg shadow border hover:shadow-lg transition">
+            <span class="material-icons text-yellow-600 text-4xl">diversity_3</span>
+            <h3 class="font-semibold mt-2 text-yellow-400">Coordinación Institucional</h3>
+          </div>
+          <div class="bg-yellow-50 p-4 border-yellow-500 rounded-lg shadow border hover:shadow-lg transition">
+            <span class="material-icons text-red-600 text-4xl">emergency</span>
+            <h3 class="font-semibold mt-2 text-yellow-400">Respuesta Rápida</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visión -->
+  <section class="max-w-6xl mx-auto bg-[#264d27] p-8 rounded-lg shadow-lg border-l-4 border-yellow-400 mb-12">
+    <h2 class="text-3xl font-bold mb-6 text-yellow-300 flex items-center gap-3">
+      <span class="material-icons text-yellow-400">visibility</span> Visión
+    </h2>
+    <div class="flex flex-col md:flex-row gap-8">
+      <div class="md:w-1/2">
+        <img src="assets/imgfuego.png" alt="Visión de futuro" class="w-full rounded-lg shadow-md h-80 object-cover">
+      </div>
+      <div class="md:w-1/2 space-y-6">
+        <p class="text-gray-100 text-justify">
+          Ser una unidad de élite altamente entrenada, equipada y reconocida a nivel nacional por su eficacia en la lucha contra incendios forestales, su disciplina, su compromiso con el medio ambiente y su capacidad de respuesta oportuna ante emergencias, consolidándose como un referente en la defensa de la Amazonía y el desarrollo sostenible de la región chiquitana.
+        </p>
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg">
+          <h3 class="font-bold text-yellow-800 mb-2">Objetivos Estratégicos</h3>
+          <ul class="list-disc pl-5 text-gray-700 space-y-2">
+            <li>Modernización del equipamiento táctico</li>
+            <li>Reducir la incidencia de los incendios forestales en la Chiquitania mediante campañas de prevención y vigilancia activa.</li>
+            <li>Ampliación de cobertura regional</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-[#264d27] text-white py-8">
+  <div class="text-center text-yellow-300">
+    <p>© 2025 Batallón de Bomberos Forestales "Chiquitania" - Ejército de Bolivia. Todos los derechos reservados.</p>
+  </div>
+</footer>

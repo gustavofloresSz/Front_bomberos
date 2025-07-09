@@ -1,0 +1,128 @@
+<div class="flex flex-col h-[calc(100vh-128px)] bg-gray-50">
+  <!-- Header -->
+  <div class="bg-yellow-100 shadow-sm p-4 border-b flex items-center gap-3">
+    <div
+      class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-green-700 flex items-center justify-center text-white font-semibold text-lg flex-shrink-0">
+      {{ iniciales }}
+    </div>
+    <div class="flex-1 min-w-0">
+      <h2 class="text-xl font-semibold truncate text-gray-900">{{ name_receptor }}</h2>
+    </div>
+  </div>
+
+  <!-- Mensajes -->
+  <div #scrollContainer class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-100">
+    <div *ngIf="mensajes.length === 0" class="text-center text-gray-500 py-12">
+      <mat-icon class="text-5xl mb-3 text-gray-300">chat_bubble_outline</mat-icon>
+      <p class="text-base font-medium mb-1">No hay mensajes en esta conversación</p>
+      <p class="text-sm">Envía un mensaje para comenzar</p>
+    </div>
+
+    <div *ngFor="let envio of mensajes" class="flex" [ngClass]="envio.emisor.id === miId ? 'justify-end' : 'justify-start'">
+      <div class="max-w-[75%] relative">
+        <div
+          class="p-4 rounded-2xl shadow-sm break-words"
+          [ngClass]="envio.emisor.id === miId
+            ? 'bg-gray-700 text-white rounded-br-md border border-gray-800'
+            : 'bg-white text-gray-900 rounded-bl-md border border-gray-300'">
+
+          <p *ngIf="envio.emisor.id !== miId" class="font-semibold text-sm mb-2 text-gray-700">
+            {{ envio.emisor.name }}
+          </p>
+
+          <p *ngIf="envio.mensaje" class="whitespace-pre-wrap leading-relaxed mb-2">{{ envio.mensaje }}</p>
+
+          <div *ngIf="envio.archivos?.length" class="space-y-2 mb-2">
+            <div *ngFor="let archivo of envio.archivos"
+                 class="border rounded-xl p-3 flex items-center gap-3 transition-colors hover:bg-gray-200"
+                 [ngClass]="envio.emisor.id === miId ? 'bg-gray-600 border-gray-700 text-white' : 'bg-gray-50 border-gray-300'">
+
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                   [ngClass]="envio.emisor.id === miId ? 'bg-gray-500' : 'bg-gray-200'">
+                <mat-icon [ngClass]="envio.emisor.id === miId ? 'text-white' : 'text-gray-600'">description</mat-icon>
+              </div>
+
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium truncate"
+                   [ngClass]="envio.emisor.id === miId ? 'text-white' : 'text-gray-900'">{{ archivo.name_original }}</p>
+                <p class="text-xs"
+                   [ngClass]="envio.emisor.id === miId ? 'text-gray-300' : 'text-gray-500'">Documento</p>
+              </div>
+
+              <button mat-icon-button
+                      (click)="descargarArchivo(archivo.name, archivo.name_original)"
+                      [ngClass]="envio.emisor.id === miId ? 'text-white hover:text-gray-300' : 'text-gray-600 hover:text-gray-800'">
+                <mat-icon>download</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end gap-1 text-right text-xs"
+               [ngClass]="envio.emisor.id === miId ? 'text-gray-300' : 'text-gray-500'">
+            <span>{{ envio.fecha_envio | date:'dd/MM/yy' }}</span>
+            <span>•</span>
+            <span>{{ envio.fecha_envio | date:'HH:mm' }}</span>
+            <mat-icon *ngIf="envio.emisor.id === miId" class="ml-1 text-gray-300 text-xs">done_all</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Entrada de mensajes -->
+  <div class="bg-white border-t p-4">
+    <div *ngIf="archivosAdjuntos.length" class="mb-3">
+      <div class="flex items-center gap-2 overflow-x-auto py-2 px-1">
+        <div *ngFor="let archivo of archivosAdjuntos; let i = index" class="flex-shrink-0 border rounded-lg bg-gray-50 p-3 w-40">
+          <div class="flex items-start gap-2">
+            <div class="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+              <mat-icon class="text-white text-sm">description</mat-icon>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium truncate">{{ archivo.name }}</p>
+              <p class="text-xs text-gray-500">{{ (archivo.size / 1024 / 1024).toFixed(1) }} MB</p>
+            </div>
+            <button mat-icon-button
+                    (click)="quitarArchivo(i); $event.stopPropagation()"
+                    class="!w-6 !h-6 !min-h-0 text-gray-500 hover:text-red-500 transition-colors">
+              <mat-icon class="text-sm">close</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class="flex items-center gap-3 pt-1" (submit)="enviarMensaje($event)">
+      <input type="file" multiple hidden #fileInput (change)="onAdjunto($event)">
+
+      <button type="button"
+              mat-icon-button
+              (click)="fileInput.click()"
+              class="text-gray-600 hover:text-gray-800 transition-colors"
+              aria-label="Adjuntar archivo">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+
+      <mat-form-field appearance="outline" class="flex-1 m-0">
+        <textarea matInput
+                  placeholder="Escribe un mensaje"
+                  [(ngModel)]="nuevoMensaje"
+                  name="nuevoMensaje"
+                  rows="1"
+                  cdkTextareaAutosize
+                  cdkAutosizeMaxRows="4"
+                  (keydown)="onKeyDown($event)"
+                  class="resize-none"></textarea>
+      </mat-form-field>
+
+      <button type="submit"
+              mat-icon-button
+              color="primary"
+              class="mb-1"
+              [disabled]="(!nuevoMensaje || nuevoMensaje === '') && archivosAdjuntos.length === 0"
+              aria-label="Enviar mensaje">
+        <mat-icon>send</mat-icon>
+      </button>
+    </form>
+  </div>
+</div>

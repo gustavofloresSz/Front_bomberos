@@ -1,0 +1,24 @@
+<div class="p-2">
+  <div class="flex flex-col gap-y-2 items-center pb-4">
+    <span class="text-lg font-bold leading-8">
+      {{fullname() }}
+    </span>
+    <span class="rounded-full bg-green-200 py-1 px-2 text-xs font-medium text-green-700">
+      Conectado
+    </span>
+  </div>
+
+  <mat-action-list>
+    <button mat-list-item (click)="irConfiguracion()">
+      <mat-icon matListItemIcon>manage_accounts</mat-icon>
+      <div [routerLink]="['/main/user-settings']" matListItemTitle>Configuraciones</div>
+    </button>
+    <mat-divider />
+    <button mat-list-item (click)="cerrarSesion()">
+      <mat-icon matListItemIcon>logout</mat-icon>
+      <div matListItemTitle>Cerrar sesion</div>
+    </button>
+  </mat-action-list>
+  <div class="flex justify-end">
+  </div>
+</div>

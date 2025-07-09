@@ -1,0 +1,68 @@
+<h2 mat-dialog-title>
+  {{ modo === 'crear' ? 'Agregar Usuario' : modo === 'editar' ? 'Editar Usuario' : 'Eliminar Usuario' }}
+</h2>
+
+<div mat-dialog-content>
+  <!-- Eliminar -->
+  <div *ngIf="modo === 'eliminar'" class="text-center p-4">
+    <p class="text-lg">
+      ¿Estás seguro de que deseas eliminar al usuario <strong>{{ data.user.name }}</strong>?
+    </p>
+  </div>
+
+  <!-- Crear y Editar -->
+  <form *ngIf="modo !== 'eliminar'" [formGroup]="form" class="p-4 space-y-4">
+    <div class="flex flex-wrap gap-4">
+      <mat-form-field class="flex-1 min-w-[200px]">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field class="flex-1 min-w-[200px]">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="usuario" />
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <mat-form-field class="flex-1 min-w-[200px]">
+        <mat-label>Rol</mat-label>
+        <mat-select formControlName="rol">
+          <mat-option value="administrador">Administrador</mat-option>
+          <mat-option value="usuario">Usuario</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="flex-1 min-w-[200px]">
+        <mat-label>Sección</mat-label>
+        <mat-select formControlName="seccion">
+          <mat-option *ngFor="let sec of secciones" [value]="sec.id">{{ sec.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="w-full" *ngIf="modo === 'crear' || modo === 'editar'">
+      <mat-label>{{ modo === 'crear' ? 'Contraseña' : 'Nueva contraseña (opcional)' }}</mat-label>
+      <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" />
+      <button type="button" mat-icon-button matSuffix (click)="verPassword()"
+        [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+        [attr.aria-pressed]="showPassword">
+        <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+
+</div>
+
+<div mat-dialog-actions class="flex justify-end gap-2 px-4 pb-4">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+
+  <button mat-flat-button color="warn" *ngIf="modo === 'eliminar'" (click)="confirmarEliminacion()">
+    Eliminar
+  </button>
+
+  <button mat-flat-button color="primary" *ngIf="modo === 'crear' || modo === 'editar'" (click)="confirmarEdicion()"
+    [disabled]="form.invalid">
+    {{ modo === 'crear' ? 'Agregar' : 'Guardar' }}
+  </button>
+</div>
