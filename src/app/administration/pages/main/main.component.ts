@@ -29,6 +29,7 @@ import { CommonModule } from '@angular/common';
 export class MainComponent implements OnInit {
   isOpen = false;
   miRol: string = '';
+  logisticaAbierta = false;
 
   private userService = inject(UserService);
 

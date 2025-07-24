@@ -1,0 +1,28 @@
+<div class="text-white space-y-6">
+  <div>
+    <h1 class="text-2xl font-bold text-yellow-300">Comentarios Recibidos</h1>
+    <p class="text-sm text-gray-300">Listado de reportes enviados por la población.</p>
+  </div>
+
+  <div *ngIf="comentarios.length === 0" class="text-center text-gray-400">
+    No hay comentarios enviados aún.
+  </div>
+
+  <div *ngFor="let comentario of comentarios" class="bg-[#2e5631] p-4 rounded-lg shadow-lg border border-green-700">
+    <p><span class="text-yellow-200 font-semibold">Ubicación:</span> {{ comentario.ubicacion }}</p>
+    <p><span class="text-yellow-200 font-semibold">Tipo de Incendio:</span> {{ comentario.tipo_incendio }}</p>
+    <p><span class="text-yellow-200 font-semibold">Descripción:</span> {{ comentario.descripcion }}</p>
+
+    <div class="flex justify-between items-center mt-2">
+      <p class="text-sm text-gray-400">Fecha de Envío: {{ comentario.fecha_envio | date:'dd/MM/yyyy HH:mm' }}</p>
+      <button
+        type="button"
+        mat-flat-button
+        color="primary"
+        (click)="marcarComoCompletado(comentario.id)"
+      >
+        Completado
+      </button>
+    </div>
+  </div>
+</div>

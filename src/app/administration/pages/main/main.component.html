@@ -13,14 +13,48 @@
             <span class="material-icons mr-4">folder</span>
             <span class="text-white text-base">Secciones</span>
           </a>
+
           <a *ngIf="miRol === 'administrador'" [routerLink]="['/main/users']" class="flex items-center p-3 rounded hover:bg-green-800 transition">
             <span class="material-icons mr-4">people</span>
             <span class="text-white text-base">Usuarios</span>
           </a>
+
+          <button (click)="logisticaAbierta = !logisticaAbierta" class="flex items-center w-full p-3 rounded hover:bg-green-800 transition">
+            <span class="material-icons mr-4">inventory</span>
+            <span class="text-white text-base flex-1 text-left">Logística</span>
+            <mat-icon>{{ logisticaAbierta ? 'expand_less' : 'expand_more' }}</mat-icon>
+          </button>
+
+          <div *ngIf="logisticaAbierta" class="ml-6 space-y-1">
+            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'herramienta' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+              <mat-icon>build</mat-icon> Herramientas
+            </a>
+            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'equipo' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+              <mat-icon>engineering</mat-icon> Equipo
+            </a>
+            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'transporte' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+              <mat-icon>local_shipping</mat-icon> Transporte
+            </a>
+            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'no-tripulados' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+              <mat-icon>flight</mat-icon> No Tripulados
+            </a>
+          </div>
+
+          <a [routerLink]="['/main/control-operaciones']" class="flex items-center p-3 rounded hover:bg-green-800 transition">
+            <span class="material-icons mr-4">assignment</span>
+            <span class="text-white text-base">Operaciones</span>
+          </a>
+
           <a [routerLink]="['/main/imbox']" class="flex items-center p-3 rounded hover:bg-green-800 transition">
             <span class="material-icons mr-4">chat</span>
-            <span class="text-white text-base">Conversaciones</span>
+            <span class="text-white text-base">Documentación</span>
           </a>
+
+          <a [routerLink]="['/main/crud-cometario']" class="flex items-center p-3 rounded hover:bg-green-800 transition">
+            <span class="material-icons mr-4">warning</span>
+            <span class="text-white text-base">Alerta contra incendios</span>
+          </a>
+
           <a [routerLink]="['/main/simb-viewer']" class="flex items-center p-3 rounded hover:bg-green-800 transition">
             <span class="material-icons mr-4">map</span>
             <span class="text-white text-base">Focos de calor</span>
@@ -32,13 +66,11 @@
     <!-- MAIN CONTENT -->
     <mat-drawer-content>
       <div class="flex flex-col h-full">
-
         <!-- NAVBAR -->
         <header class="bg-[#264d27] text-white p-4 flex items-center">
           <button class="p-2 hover:bg-green-800 material-icons" (click)="drawer.toggle()">menu</button>
           <h1 class="ml-4 text-lg font-bold">Unidad personal</h1>
           <div class="flex-1"></div>
-
           <button mat-icon-button cdkOverlayOrigin #trigger="cdkOverlayOrigin" (click)="isOpen = !isOpen">
             <mat-icon class="text-yellow-300">account_circle</mat-icon>
           </button>

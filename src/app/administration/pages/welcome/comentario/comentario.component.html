@@ -1,0 +1,67 @@
+<main class="bg-[#1e3b20] min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-white">
+  <section class="max-w-3xl mx-auto bg-[#264d27] p-8 rounded-lg shadow-lg border-l-4 border-yellow-400">
+
+    <div class="mb-4">
+      <a [routerLink]="['/welcome']"
+         class="inline-flex items-center text-yellow-300 hover:text-yellow-200 transition font-medium">
+        <span class="material-icons mr-1">arrow_back</span> Volver
+      </a>
+    </div>
+
+    <div class="mb-6">
+      <h1 class="text-xl sm:text-2xl font-bold leading-tight text-yellow-300">
+        BATALLÓN DE BOMBEROS FORESTALES DEL EJÉRCITO
+      </h1>
+    </div>
+
+    <!-- Subtítulo -->
+    <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-yellow-300 flex items-center gap-3">
+      <span class="material-icons text-yellow-400">report</span> Reportar Incendio
+    </h2>
+
+    <div *ngIf="successMessage()" class="bg-green-600 text-white p-3 rounded mb-4 shadow-md transition-opacity duration-300">
+      {{ successMessage() }}
+    </div>
+
+    <form [formGroup]="formComentario" (ngSubmit)="enviarComentario()" class="space-y-6">
+
+      <div>
+        <p class="text-sm text-yellow-200 mb-1">Descripción del incendio</p>
+        <textarea rows="4" formControlName="descripcion"
+          class="w-full p-3 rounded bg-[#3b5b3c] text-white border border-green-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 resize-none">
+        </textarea>
+      </div>
+
+      <div>
+        <p class="text-sm text-yellow-200 mb-1">Magnitud del incendio</p>
+        <select formControlName="tipo_incendio"
+            class="w-full p-3 rounded bg-[#3b5b3c] text-white border border-green-600 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+            <option value="">Seleccione una opción</option>
+            <option value="Leve">Leve</option>
+            <option value="Moderado">Moderado</option>
+            <option value="Grave">Grave</option>
+            <option value="Gran magnitud">De gran magnitud</option>
+        </select>
+      </div>
+
+      <div>
+        <p class="text-sm text-yellow-200 mb-1">Ubicación <span class="text-red-400">*</span></p>
+        <input type="text" formControlName="ubicacion" required
+          placeholder="Ej. Comunidad San Pedro, a 10km de Concepción"
+          class="w-full p-3 rounded bg-[#3b5b3c] text-white border border-green-600 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+      </div>
+
+      <div class="flex justify-end gap-4 mt-6">
+        <button type="reset"
+          class="px-5 py-2 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-white transition">
+          Limpiar
+        </button>
+        <button type="submit" [disabled]="formComentario.invalid"
+          class="px-5 py-2 bg-blue-800 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+          <span class="material-icons">send</span> Enviar Reporte
+        </button>
+      </div>
+      
+    </form>
+  </section>
+</main>

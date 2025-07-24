@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>
+  {{ modo === 'crear' ? 'Agregar Inventario' : modo === 'editar' ? 'Editar Inventario' : 'Eliminar Inventario' }}
+</h2>
+
+<div mat-dialog-content>
+  <div *ngIf="modo === 'eliminar'" class="text-center p-4">
+    <p class="text-lg">
+      ¿Estás seguro de que deseas eliminar el inventario <strong>{{ data.item.nombre }}</strong>?
+    </p>
+  </div>
+
+  <div *ngIf="modo !== 'eliminar'" [formGroup]="form" class="p-4 space-y-4">
+    <mat-form-field class="w-full">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" />
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')">Nombre requerido</mat-error>
+    </mat-form-field>
+
+    <div class="flex gap-4 flex-wrap">
+      <mat-form-field class="flex-1 min-w-[200px]">
+        <mat-label>Cantidad Total</mat-label>
+        <input matInput type="number" formControlName="cantidad_total" min="1" />
+        <mat-error *ngIf="form.get('cantidad_total')?.hasError('required')">Requerido</mat-error>
+        <mat-error *ngIf="form.get('cantidad_total')?.hasError('min')">Debe ser mayor que 0</mat-error>
+        <mat-error *ngIf="form.get('cantidad_total')?.hasError('pattern')">Solo enteros</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="flex-1 min-w-[200px]">
+        <mat-label>Cantidad en Uso</mat-label>
+        <input matInput type="number" formControlName="cantidad_uso" min="0" />
+        <mat-error *ngIf="form.get('cantidad_uso')?.hasError('required')">Requerido</mat-error>
+        <mat-error *ngIf="form.get('cantidad_uso')?.hasError('min')">Debe ser mayor que 0</mat-error>
+        <mat-error *ngIf="form.get('cantidad_uso')?.hasError('pattern')">Solo enteros</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="errorUsoMayorTotal" class="text-red-600 text-sm px-2">
+      La cantidad en uso no puede ser mayor a la cantidad total.
+    </div>
+
+    <mat-form-field class="w-full">
+      <mat-label>Sección</mat-label>
+      <mat-select formControlName="seccion">
+        <mat-option *ngFor="let sec of secciones" [value]="sec.id">{{ sec.name }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('seccion')?.hasError('required')">Sección requerida</mat-error>
+    </mat-form-field>
+  </div>
+
+</div>
+
+<div mat-dialog-actions class="flex justify-end gap-2 px-4 pb-4">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+
+  <button mat-flat-button color="warn" *ngIf="modo === 'eliminar'" (click)="confirmarEliminacion()">
+    Eliminar
+  </button>
+
+  <button mat-flat-button color="primary" *ngIf="modo === 'crear' || modo === 'editar'" (click)="confirmarEdicion()"
+    [disabled]="form.invalid">
+    {{ modo === 'crear' ? 'Agregar' : 'Guardar' }}
+  </button>
+</div>

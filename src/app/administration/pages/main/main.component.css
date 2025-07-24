@@ -1,4 +1,10 @@
 ::ng-deep mat-drawer {
-  background-color: #1f2937 !important; 
+  background-color: #264d27 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
   border-radius: 0 !important;
+}
+
+::ng-deep mat-drawer-container {
+  height: 100vh !important;
 }

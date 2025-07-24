@@ -1,0 +1,23 @@
+<main class="bg-[#1e3b20] min-h-screen py-12 px-6 text-white">
+  <section class="max-w-6xl mx-auto bg-[#264d27] p-8 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-yellow-300 mb-8 flex items-center gap-3 border-b border-yellow-400 pb-4">
+      <span class="material-icons text-yellow-400">contact_phone</span>
+      Contactos de Emergencia
+    </h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div *ngFor="let grupo of contactos" class="bg-[#3b5b3c] p-6 rounded-lg shadow border-l-4" [ngClass]="grupo.color">
+        <h2 class="text-xl font-semibold text-yellow-300 flex items-center gap-2 mb-4">
+          <span class="material-icons">{{ grupo.icono }}</span>
+          {{ grupo.categoria }}
+        </h2>
+        <ul class="space-y-2">
+          <li *ngFor="let item of grupo.items" class="flex justify-between items-center bg-[#4a6b4b] px-4 py-2 rounded">
+            <span>{{ item.nombre }}</span>
+            <span class="text-yellow-200 font-mono">{{ item.telefono }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>

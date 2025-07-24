@@ -8,6 +8,11 @@ import { ImboxComponent } from './administration/pages/imbox/imbox.component';
 import { ImboxDialogComponent } from './administration/pages/imbox/imbox-dialog/imbox-dialog.component';
 import { UsersComponent } from './administration/pages/users/users.component';
 import { UserSettingsComponent } from './auth/pages/profile/user-settings/user-settings.component';
+import { ComentarioComponent } from './administration/pages/welcome/comentario/comentario.component';
+import { CrudComentarioComponent } from './administration/pages/welcome/crud-comentario/crud-comentario.component';
+import { InventarioComponent } from './administration/pages/inventario/inventario.component';
+import { ControlOperacionesComponent } from './administration/pages/control-operaciones/control-operaciones.component';
+import { ContactosComponent } from './administration/pages/welcome/contactos/contactos.component';
 
 export const routes: Routes = [
     {
@@ -34,6 +39,15 @@ export const routes: Routes = [
             {
                 path: 'user-settings', component: UserSettingsComponent
             },
+            {
+                path: 'crud-cometario', component: CrudComentarioComponent
+            },
+            {
+                path: 'inventario', component: InventarioComponent
+            },
+            {
+                path: 'control-operaciones', component: ControlOperacionesComponent
+            },
         ]
     },
     {
@@ -41,6 +55,12 @@ export const routes: Routes = [
     },
     {
         path: 'welcome', component: WelcomeComponent
+    },
+    {
+        path: 'comentario', component: ComentarioComponent
+    },
+    {
+        path: 'contactos', component: ContactosComponent
     },
     {
         path: '**', redirectTo: 'welcome', pathMatch: 'full'

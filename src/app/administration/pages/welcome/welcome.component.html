@@ -1,16 +1,36 @@
-<header class="w-full flex justify-between items-center px-6 py-4 bg-[#264d27] text-white shadow-lg">
+<header class="w-full flex flex-col sm:flex-row sm:justify-between items-center px-6 py-4 bg-[#264d27] text-white shadow-lg gap-4">
   <div class="flex items-center gap-4">
-    <img src="assets/logoR.png" alt="Escudo del Batallón" class="h-28 w-auto object-contain">
+    <img src="assets/logoR.png" alt="Escudo del Batallón" class="h-24 sm:h-28 w-auto object-contain">
     <div>
-      <h1 class="text-xl font-bold leading-tight">BATALLÓN DE BOMBEROS FORESTALES</h1>
-      <p class="text-sm">"Chiquitania - Protegiendo Nuestros Bosques"</p>
+      <h1 class="text-xl font-bold leading-tight">BATALLÓN DE BOMBEROS FORESTALES DEL EJÉRCITO</h1>
+
     </div>
   </div>
-  <button mat-flat-button color="primary" [routerLink]="['/main/seccion']" class="flex items-center transition">
-    <span class="material-icons mr-2">login</span>
-    Iniciar Sesión
-  </button>
+
+  <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+    <button mat-flat-button color="warn"
+            [routerLink]="['/contactos']"
+            class="w-full sm:w-auto flex items-center justify-center px-4 py-2 rounded-md transition">
+      <span class="material-icons mr-2">phone</span>
+      Contactos
+    </button>
+
+    <button mat-flat-button color="warn"
+            [routerLink]="['/comentario']"
+            class="w-full sm:w-auto flex items-center justify-center px-4 py-2 rounded-md transition">
+      <span class="material-icons mr-2">warning_amber</span>
+      Alerta de Incendios
+    </button>
+
+    <button mat-flat-button color="accent"
+            [routerLink]="['/main/seccion']"
+            class="w-full sm:w-auto flex items-center justify-center px-4 py-2 rounded-md transition">
+      <span class="material-icons mr-2">login</span>
+      Iniciar Sesión
+    </button>
+  </div>
 </header>
+
 
 <section class="relative h-96 bg-cover bg-center flex items-center justify-center text-white text-center px-4"
          style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/img21.jpg')">
@@ -104,13 +124,13 @@
     </h2>
     <div class="flex flex-col md:flex-row-reverse gap-8">
       <div class="md:w-1/2">
-        <img src="assets/img21.jpg" alt="Operación en terreno" class="w-full rounded-lg shadow-md h-80 object-cover">
+        <img src="assets/img21.jpg" alt="Operación en terreno" class="w-full rounded-lg shadow-md h-full object-cover">
       </div>
       <div class="md:w-1/2 space-y-6">
         <p class="text-gray-100 text-justify">
-          El Batallón de Bomberos Forestales 1 “Chiquitania” tiene la misión de prevenir, detectar, combatir y controlar incendios forestales en la región oriental del país, con énfasis en la Chiquitania, a través del despliegue de personal militar capacitado, uso de técnicas especializadas, coordinación interinstitucional y protección de los recursos naturales, la biodiversidad y la vida humana. Asimismo, apoya en la gestión de riesgos y atención de desastres, reforzando la presencia activa del Ejército en labores de defensa ambiental.
+          El batallón de bomberos forestales del Ejército, dependiente del RI-10 “GRAL. I. WARNES”, monitorea, planifica, ejecuta y supervisa operaciones de prevención y respuesta inmediata ante incendios forestales, asimismo, capacita al personal de cuadros, soldados del Ejército y población civil de las diferentes gobernaciones municipios y comunidades, a nivel nacional desde su creación, con el propósito de prevenir, combatir y extinguir los incendios forestales con personal altamente operativo, a fin de fortalecer e incrementar la capacidad institucional, mantener la vigencia del Ejército de Bolivia, cumpliendo el mandato constitucional de proteger el medio ambiente y los recursos naturales del estado plurinacional de Bolivia.
         </p>
-        <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-2 gap-4">
           <div class="bg-yellow-50 p-4 border-yellow-500 rounded-lg shadow border hover:shadow-lg transition">
             <span class="material-icons text-blue-700 text-4xl">local_fire_department</span>
             <h3 class="font-semibold mt-2 text-yellow-400">Combate de Incendios</h3>
@@ -139,18 +159,20 @@
     </h2>
     <div class="flex flex-col md:flex-row gap-8">
       <div class="md:w-1/2">
-        <img src="assets/imgfuego.png" alt="Visión de futuro" class="w-full rounded-lg shadow-md h-80 object-cover">
+        <img src="assets/imgfuego.png" alt="Visión de futuro" class="w-full rounded-lg shadow-md h-full object-cover">
       </div>
       <div class="md:w-1/2 space-y-6">
         <p class="text-gray-100 text-justify">
-          Ser una unidad de élite altamente entrenada, equipada y reconocida a nivel nacional por su eficacia en la lucha contra incendios forestales, su disciplina, su compromiso con el medio ambiente y su capacidad de respuesta oportuna ante emergencias, consolidándose como un referente en la defensa de la Amazonía y el desarrollo sostenible de la región chiquitana.
+          Constituirse en la primera unidad militar referente del Ejército de Bolivia, en la prevención, control y combate ante incendios forestales, capaz de operar de manera autosustentable, eficiente y transparente, con capacidad de respuesta inmediata a nivel nacional, mediante la formación y disponibilidad de personal altamente operativo, contribuyendo a la protección del medio ambiente y los recursos naturales, fortaleciendo así la presencia y vigencia del Ejército en cumplimiento de su mandato constitucional.
         </p>
         <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg">
           <h3 class="font-bold text-yellow-800 mb-2">Objetivos Estratégicos</h3>
           <ul class="list-disc pl-5 text-gray-700 space-y-2">
-            <li>Modernización del equipamiento táctico</li>
-            <li>Reducir la incidencia de los incendios forestales en la Chiquitania mediante campañas de prevención y vigilancia activa.</li>
-            <li>Ampliación de cobertura regional</li>
+            <li>Proteger la vida, el medio ambiente y los recursos naturales. </li>
+            <li>Capacitar a Soldados y población civil, con el objetivo de convertirse en agentes multiplicadores. </li>
+            <li>Trabajar junto a las comunidades y autoridades locales. </li>
+            <li>Reducir el impacto de los incendios forestales en la población civil. </li>
+            <li>Demostrar el compromiso del Ejército con la sociedad. </li>
           </ul>
         </div>
       </div>
@@ -160,6 +182,6 @@
 
 <footer class="bg-[#264d27] text-white py-8">
   <div class="text-center text-yellow-300">
-    <p>© 2025 Batallón de Bomberos Forestales "Chiquitania" - Ejército de Bolivia. Todos los derechos reservados.</p>
+    <p>Batallón de Bomberos Forestales del Ejército. Todos los derechos reservados.</p>
   </div>
 </footer>
