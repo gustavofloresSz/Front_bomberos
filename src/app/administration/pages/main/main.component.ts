@@ -30,6 +30,7 @@ export class MainComponent implements OnInit {
   isOpen = false;
   miRol: string = '';
   logisticaAbierta = false;
+  operacionesAbierta = false;
 
   private userService = inject(UserService);
 

@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>
+  {{ modo === 'crear' ? 'Agregar Hectárea Afectada' : modo === 'editar' ? 'Editar Hectárea Afectada' : 'Eliminar Hectárea Afectada' }}
+</h2>
+
+<div mat-dialog-content>
+  <!-- Eliminar -->
+  <div *ngIf="modo === 'eliminar'" class="text-center p-4">
+    <p class="text-lg">
+      ¿Estás seguro de que deseas eliminar la hectárea registrada en la comunidad <strong>{{ data.item.comunidad }}</strong>?
+    </p>
+  </div>
+
+  <!-- Crear o Editar -->
+  <div *ngIf="modo !== 'eliminar'" [formGroup]="form" class="p-4 space-y-4">
+    <mat-form-field class="w-full">
+      <mat-label>Comunidad</mat-label>
+      <input matInput formControlName="comunidad" />
+      <mat-error *ngIf="form.get('comunidad')?.hasError('required')">Comunidad requerida</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Municipio</mat-label>
+      <input matInput formControlName="municipio" />
+      <mat-error *ngIf="form.get('municipio')?.hasError('required')">Municipio requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Hectáreas Afectadas</mat-label>
+      <input matInput type="number" formControlName="hectarea_afectada" min="0.01" />
+      <mat-error *ngIf="form.get('hectarea_afectada')?.hasError('required')">Campo requerido</mat-error>
+      <mat-error *ngIf="form.get('hectarea_afectada')?.hasError('min')">Debe ser mayor a 0</mat-error>
+    </mat-form-field>
+  </div>
+</div>
+
+<div mat-dialog-actions class="flex justify-end gap-2 px-4 pb-4">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+
+  <button mat-flat-button color="warn" *ngIf="modo === 'eliminar'" (click)="confirmarEliminacion()">
+    Eliminar
+  </button>
+
+  <button mat-flat-button color="primary" *ngIf="modo === 'crear' || modo === 'editar'" (click)="confirmarEdicion()"
+    [disabled]="form.invalid">
+    {{ modo === 'crear' ? 'Agregar' : 'Guardar' }}
+  </button>
+</div>

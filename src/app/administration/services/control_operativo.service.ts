@@ -23,7 +23,6 @@ export class ControlOperativoService {
   private http = inject(HttpClient);
 
   addControlOperativo(control: Omit<ControlOperativo, 'id' | 'fecha_inicio'>) {
-    // No se envía fecha_inicio porque se asigna automáticamente en backend
     return this.http.post<ControlOperativo>(`${this.apiUrl}/addControlOperativo`, control);
   }
 

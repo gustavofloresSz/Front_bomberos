@@ -11,8 +11,9 @@ import { UserSettingsComponent } from './auth/pages/profile/user-settings/user-s
 import { ComentarioComponent } from './administration/pages/welcome/comentario/comentario.component';
 import { CrudComentarioComponent } from './administration/pages/welcome/crud-comentario/crud-comentario.component';
 import { InventarioComponent } from './administration/pages/inventario/inventario.component';
-import { ControlOperacionesComponent } from './administration/pages/control-operaciones/control-operaciones.component';
 import { ContactosComponent } from './administration/pages/welcome/contactos/contactos.component';
+import { ControlOperacionesComponent } from './administration/pages/operaciones/operativo/control-operaciones/control-operaciones.component';
+import { ControlHectareaComponent } from './administration/pages/operaciones/hectarea/control-hectarea/control-hectarea.component';
 
 export const routes: Routes = [
     {
@@ -47,6 +48,9 @@ export const routes: Routes = [
             },
             {
                 path: 'control-operaciones', component: ControlOperacionesComponent
+            },
+            {
+                path: 'control-hectarea', component: ControlHectareaComponent
             },
         ]
     },

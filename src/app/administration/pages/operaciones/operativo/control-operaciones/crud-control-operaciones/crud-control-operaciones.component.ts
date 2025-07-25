@@ -1,14 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { SeccionService } from '../../../services/seccion.service';
-import { ControlOperativo, ControlOperativoService } from '../../../services/control_operativo.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ControlOperativoService } from '../../../../../services/control_operativo.service';
 
 @Component({
   selector: 'app-crud-control-operaciones',
@@ -28,13 +27,13 @@ export class CrudControlOperacionesComponent implements OnInit {
   private fb = inject(FormBuilder);
   private controlService = inject(ControlOperativoService);
   private dialogRef = inject(MatDialogRef<CrudControlOperacionesComponent>);
-  private data = inject(MAT_DIALOG_DATA)
+  public data = inject(MAT_DIALOG_DATA);
 
   form!: FormGroup;
-  modo: 'editar' = 'editar'; // Solo edición
+  modo: 'crear' | 'editar' | 'eliminar' = this.data.modo;
 
   ngOnInit(): void {
-    const control = this.data.item;
+    const control = this.data.item || {};
 
     this.form = this.fb.group({
       fecha_fin: [control.fecha_fin || ''],
@@ -46,17 +45,44 @@ export class CrudControlOperacionesComponent implements OnInit {
       material_equipo: [control.material_equipo || ''],
       novedades: [control.novedades || ''],
     });
+
+    if (this.modo === 'eliminar') {
+      this.form.disable();
+    }
   }
 
   confirmarEdicion() {
     if (this.form.invalid) return;
 
-    const datos = this.form.value;
+    const datos = { ...this.form.value };
+    // Si el campo está vacío, lo convertimos a null
+    if (!datos.fecha_fin) {
+      datos.fecha_fin = null;
+    }
+    if (this.modo === 'crear') {
+      this.controlService.addControlOperativo(datos).subscribe({
+        next: () => this.dialogRef.close(true),
+        error: (err) => {
+          console.error('Error al crear control operativo:', err);
+          this.dialogRef.close(false);
+        }
+      });
+    } else {
+      this.controlService.updateControlOperativo(this.data.item.id, datos).subscribe({
+        next: () => this.dialogRef.close(true),
+        error: (err) => {
+          console.error('Error actualizando control operativo:', err);
+          this.dialogRef.close(false);
+        }
+      });
+    }
+  }
 
-    this.controlService.updateControlOperativo(this.data.item.id, datos).subscribe({
+  confirmarEliminacion() {
+    this.controlService.deleteControlOperativo(this.data.item.id).subscribe({
       next: () => this.dialogRef.close(true),
       error: (err) => {
-        console.error('Error actualizando control operativo:', err);
+        console.error('Error eliminando control operativo:', err);
         this.dialogRef.close(false);
       }
     });

@@ -20,7 +20,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   templateUrl: './users.component.html',
-  styles: ``
 })
 export class UsersComponent {
   usuarios: any[] = [];

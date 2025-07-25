@@ -40,10 +40,23 @@
             </a>
           </div>
 
-          <a [routerLink]="['/main/control-operaciones']" class="flex items-center p-3 rounded hover:bg-green-800 transition">
+          <button (click)="operacionesAbierta = !operacionesAbierta" class="flex items-center w-full p-3 rounded hover:bg-green-800 transition">
             <span class="material-icons mr-4">assignment</span>
-            <span class="text-white text-base">Operaciones</span>
-          </a>
+            <span class="text-white text-base flex-1 text-left">Operaciones</span>
+            <mat-icon>{{ operacionesAbierta ? 'expand_less' : 'expand_more' }}</mat-icon>
+          </button>
+
+          <div *ngIf="operacionesAbierta" class="ml-6 space-y-1">
+            <a [routerLink]="['/main/pcvr']" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+              <mat-icon>location_on</mat-icon> Puestos de Control
+            </a>
+            <a [routerLink]="['/main/control-operaciones']" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+              <mat-icon>security</mat-icon> Operativos de Intervención
+            </a>
+            <a [routerLink]="['/main/control-hectarea']" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+              <mat-icon>landscape</mat-icon> Hectáreas Afectadas
+            </a>
+          </div>
 
           <a [routerLink]="['/main/imbox']" class="flex items-center p-3 rounded hover:bg-green-800 transition">
             <span class="material-icons mr-4">chat</span>

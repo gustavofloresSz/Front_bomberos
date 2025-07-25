@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ControlOperativoService } from '../../services/control_operativo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { CrudControlOperacionesComponent } from './crud-control-operaciones/crud-control-operaciones.component';
+import { ControlOperativoService } from '../../../../services/control_operativo.service';
 
 @Component({
   selector: 'app-control-operaciones',
@@ -15,7 +15,6 @@ import { CrudControlOperacionesComponent } from './crud-control-operaciones/crud
     MatButtonModule,
     MatIconModule,
     MatTableModule,
-    CommonModule,
     FormsModule
   ],
   templateUrl: './control-operaciones.component.html',
@@ -24,7 +23,7 @@ export class ControlOperacionesComponent implements OnInit {
   operaciones: any[] = [];
   displayedColumns: string[] = [
     'nro', 'fecha_inicio', 'fecha_fin', 'responsable', 'cuadrillas',
-    'efectivo', 'lugar', 'distancia_kms', 'material_equipo', 'novedades',
+    'efectivo', 'comunidad_municipio', 'distancia_kms', 'material_equipo', 'novedades',
     'editar', 'eliminar'
   ];
   busqueda = '';
@@ -48,7 +47,17 @@ export class ControlOperacionesComponent implements OnInit {
   }
 
   abrirDialogoCrear() {
-    
+    const dialogRef = this.dialog.open(CrudControlOperacionesComponent, {
+      data: { modo: 'crear' },
+      width: '600px',
+      maxWidth: '90vw'
+    });
+
+    dialogRef.afterClosed().subscribe((confirmado) => {
+      if (confirmado) {
+        this.obtenerOperaciones();
+      }
+    });
   }
 
   abrirDialogoEditar(item: any) {
@@ -67,7 +76,17 @@ export class ControlOperacionesComponent implements OnInit {
 
 
   abrirDialogoEliminar(item: any) {
-    
+    const dialogRef = this.dialog.open(CrudControlOperacionesComponent, {
+      data: { item, modo: 'eliminar' },
+      width: '500px',
+      maxWidth: '90vw'
+    });
+
+    dialogRef.afterClosed().subscribe((confirmado) => {
+      if (confirmado) {
+        this.obtenerOperaciones();
+      }
+    });
   }
 
   coincideBusqueda(op: any): boolean {

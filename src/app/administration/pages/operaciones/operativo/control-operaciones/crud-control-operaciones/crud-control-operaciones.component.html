@@ -1,0 +1,70 @@
+<h2 mat-dialog-title>
+  {{ modo === 'crear' ? 'Agregar Control Operativo' : modo === 'editar' ? 'Editar Control Operativo' : 'Eliminar Control Operativo' }}
+</h2>
+
+<div mat-dialog-content>
+  <!-- Eliminar -->
+  <div *ngIf="modo === 'eliminar'" class="text-center p-4">
+    <p class="text-lg">
+      ¿Estás seguro de que deseas eliminar el control operativo realizado por <strong>{{ data.item.responsable }}</strong>?
+    </p>
+  </div>
+
+  <!-- Crear o Editar -->
+  <div *ngIf="modo !== 'eliminar'" [formGroup]="form" class="p-4 space-y-4">
+    <mat-form-field class="w-full">
+      <mat-label>Fecha Fin</mat-label>
+      <input matInput type="date" formControlName="fecha_fin" />
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Responsable</mat-label>
+      <input matInput formControlName="responsable" />
+      <mat-error *ngIf="form.get('responsable')?.hasError('required')">Responsable requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Cuadrillas</mat-label>
+      <input matInput type="number" formControlName="cuadrillas" />
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Efectivo</mat-label>
+      <input matInput type="number" formControlName="efectivo" min="1"/>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Comunidad / Municipio</mat-label>
+      <input matInput formControlName="lugar" />
+      <mat-error *ngIf="form.get('lugar')?.hasError('required')">Lugar requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Distancia (km)</mat-label>
+      <input matInput type="number" formControlName="distancia_kms" min="1" />
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Material / Equipo</mat-label>
+      <input matInput formControlName="material_equipo" />
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Novedades</mat-label>
+      <textarea matInput formControlName="novedades"></textarea>
+    </mat-form-field>
+  </div>
+</div>
+
+<div mat-dialog-actions class="flex justify-end gap-2 px-4 pb-4">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+
+  <button mat-flat-button color="warn" *ngIf="modo === 'eliminar'" (click)="confirmarEliminacion()">
+    Eliminar
+  </button>
+
+  <button mat-flat-button color="primary" *ngIf="modo === 'crear' || modo === 'editar'" (click)="confirmarEdicion()"
+    [disabled]="form.invalid">
+    {{ modo === 'crear' ? 'Agregar' : 'Guardar' }}
+  </button>
+</div>
