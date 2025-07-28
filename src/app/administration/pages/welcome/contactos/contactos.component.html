@@ -4,7 +4,12 @@
       <span class="material-icons text-yellow-400">contact_phone</span>
       Contactos de Emergencia
     </h1>
-
+    <div class="mb-4">
+      <a [routerLink]="['/welcome']"
+         class="inline-flex items-center text-yellow-300 hover:text-yellow-200 transition font-medium">
+        <span class="material-icons mr-1">arrow_back</span> Volver
+      </a>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div *ngFor="let grupo of contactos" class="bg-[#3b5b3c] p-6 rounded-lg shadow border-l-4" [ngClass]="grupo.color">
         <h2 class="text-xl font-semibold text-yellow-300 flex items-center gap-2 mb-4">

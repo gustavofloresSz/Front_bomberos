@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { CrudControlOperacionesComponent } from './crud-control-operaciones/crud-control-operaciones.component';
 import { ControlOperativoService } from '../../../../services/control_operativo.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-control-operaciones',
@@ -22,21 +23,27 @@ import { ControlOperativoService } from '../../../../services/control_operativo.
 export class ControlOperacionesComponent implements OnInit {
   operaciones: any[] = [];
   displayedColumns: string[] = [
-    'nro', 'fecha_inicio', 'fecha_fin', 'responsable', 'cuadrillas',
-    'efectivo', 'comunidad_municipio', 'distancia_kms', 'material_equipo', 'novedades',
+    'nro', 'fecha_inicio', 'fecha_fin', 'responsable',
+    'efectivo_total', 'efectivo_uso','comunidad_municipio', 'distancia_kms', 'material_equipo', 'novedades',
     'editar', 'eliminar'
   ];
   busqueda = '';
+  tipoSeleccionado?: string;
 
   private controlService = inject(ControlOperativoService);
   private dialog = inject(MatDialog);
+  private route = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    this.obtenerOperaciones();
+    this.route.queryParams.subscribe(params => {
+      this.tipoSeleccionado = params['tipo'];
+      this.obtenerOperaciones(this.tipoSeleccionado);
+    });
   }
 
-  obtenerOperaciones() {
-    this.controlService.getControlOperativo().subscribe({
+  obtenerOperaciones(tipo?: string) {
+    this.tipoSeleccionado = tipo;
+    this.controlService.getControlOperativo(tipo).subscribe({
       next: (data: any[]) => {
         this.operaciones = data;
       },
@@ -48,14 +55,17 @@ export class ControlOperacionesComponent implements OnInit {
 
   abrirDialogoCrear() {
     const dialogRef = this.dialog.open(CrudControlOperacionesComponent, {
-      data: { modo: 'crear' },
+      data: {
+        modo: 'crear',
+        tipo: this.tipoSeleccionado
+      },
       width: '600px',
       maxWidth: '90vw'
     });
 
     dialogRef.afterClosed().subscribe((confirmado) => {
       if (confirmado) {
-        this.obtenerOperaciones();
+        this.obtenerOperaciones(this.tipoSeleccionado);
       }
     });
   }
@@ -69,11 +79,10 @@ export class ControlOperacionesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((confirmado) => {
       if (confirmado) {
-        this.obtenerOperaciones(); // refresca la tabla tras guardar
+        this.obtenerOperaciones(this.tipoSeleccionado);
       }
     });
   }
-
 
   abrirDialogoEliminar(item: any) {
     const dialogRef = this.dialog.open(CrudControlOperacionesComponent, {
@@ -84,7 +93,7 @@ export class ControlOperacionesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((confirmado) => {
       if (confirmado) {
-        this.obtenerOperaciones();
+        this.obtenerOperaciones(this.tipoSeleccionado);
       }
     });
   }

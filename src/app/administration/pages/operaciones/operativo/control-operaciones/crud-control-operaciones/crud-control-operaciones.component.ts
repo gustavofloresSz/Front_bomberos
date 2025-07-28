@@ -38,8 +38,8 @@ export class CrudControlOperacionesComponent implements OnInit {
     this.form = this.fb.group({
       fecha_fin: [control.fecha_fin || ''],
       responsable: [control.responsable || '', Validators.required],
-      cuadrillas: [control.cuadrillas || null],
-      efectivo: [control.efectivo || null],
+      efectivo_total: [control.efectivo_total || null],
+      efectivo_uso: [control.efectivo_uso || null],
       lugar: [control.lugar || '', Validators.required],
       distancia_kms: [control.distancia_kms || null],
       material_equipo: [control.material_equipo || ''],
@@ -55,12 +55,18 @@ export class CrudControlOperacionesComponent implements OnInit {
     if (this.form.invalid) return;
 
     const datos = { ...this.form.value };
-    // Si el campo está vacío, lo convertimos a null
+
+    // Convertir vacío en null
     if (!datos.fecha_fin) {
       datos.fecha_fin = null;
     }
+    const payload = {
+      ...datos,
+      tipo: this.data.tipo,
+    };
+
     if (this.modo === 'crear') {
-      this.controlService.addControlOperativo(datos).subscribe({
+      this.controlService.addControlOperativo(payload).subscribe({
         next: () => this.dialogRef.close(true),
         error: (err) => {
           console.error('Error al crear control operativo:', err);
@@ -68,7 +74,7 @@ export class CrudControlOperacionesComponent implements OnInit {
         }
       });
     } else {
-      this.controlService.updateControlOperativo(this.data.item.id, datos).subscribe({
+      this.controlService.updateControlOperativo(this.data.item.id, payload).subscribe({
         next: () => this.dialogRef.close(true),
         error: (err) => {
           console.error('Error actualizando control operativo:', err);
@@ -77,6 +83,7 @@ export class CrudControlOperacionesComponent implements OnInit {
       });
     }
   }
+
 
   confirmarEliminacion() {
     this.controlService.deleteControlOperativo(this.data.item.id).subscribe({

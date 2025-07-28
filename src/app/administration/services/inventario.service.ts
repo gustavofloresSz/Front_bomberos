@@ -24,6 +24,11 @@ export class InventarioService {
     return this.http.get(`${this.apiUrl}/getInventario`, params);
   }
 
+  getInventarioPastel(tipo?: string) {
+    const params = tipo ? { params: new HttpParams().set('tipo', tipo) } : {};
+    return this.http.get<any[]>(`${this.apiUrl}/getInventario`, params);
+  }
+
   updateInventario(id: number, inventario: {
     nombre?: string;
     cantidad_total?: number;

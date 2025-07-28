@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { InventarioService } from '../../services/inventario.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';

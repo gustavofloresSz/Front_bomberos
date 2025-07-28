@@ -26,18 +26,25 @@
           </button>
 
           <div *ngIf="logisticaAbierta" class="ml-6 space-y-1">
-            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'herramienta' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'Herramientas' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
               <mat-icon>build</mat-icon> Herramientas
             </a>
-            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'equipo' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'Equipo' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
               <mat-icon>engineering</mat-icon> Equipo
             </a>
-            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'transporte' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'Transporte' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
               <mat-icon>local_shipping</mat-icon> Transporte
             </a>
-            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'no-tripulados' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'No-Tripulados' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
               <mat-icon>flight</mat-icon> No Tripulados
             </a>
+            <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'Combustible' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+              <mat-icon>local_gas_station</mat-icon> Combustible
+            </a>
+            <a [routerLink]="['/main/grafico-inventario']" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+              <mat-icon>pie_chart</mat-icon> Reporte Grafico Logistica
+            </a>
+            
           </div>
 
           <button (click)="operacionesAbierta = !operacionesAbierta" class="flex items-center w-full p-3 rounded hover:bg-green-800 transition">
@@ -47,14 +54,17 @@
           </button>
 
           <div *ngIf="operacionesAbierta" class="ml-6 space-y-1">
-            <a [routerLink]="['/main/pcvr']" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+            <a [routerLink]="['/main/control-operaciones']" [queryParams]="{ tipo: 'Puestos de Control' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
               <mat-icon>location_on</mat-icon> Puestos de Control
             </a>
-            <a [routerLink]="['/main/control-operaciones']" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+            <a [routerLink]="['/main/control-operaciones']" [queryParams]="{ tipo: 'Operativos de Intervencion' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
               <mat-icon>security</mat-icon> Operativos de Intervención
             </a>
             <a [routerLink]="['/main/control-hectarea']" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
               <mat-icon>landscape</mat-icon> Hectáreas Afectadas
+            </a>
+            <a [routerLink]="['/main/grafico-operativo']" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+              <mat-icon>pie_chart</mat-icon> Reporte Grafico Operaciones
             </a>
           </div>
 

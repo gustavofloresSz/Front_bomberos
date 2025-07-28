@@ -22,4 +22,11 @@ export class SocketService {
   escucharMensajes(callback: (data: any) => void) {
     this.socket.on('mensaje', callback);
   }
+
+  enviarComentario(comentario: any) {
+    this.socket.emit('comentario', comentario);
+  }
+  escucharComentario(callback: (data: any) => void) {
+    this.socket.on('comentario', callback);
+  }
 }

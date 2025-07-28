@@ -14,6 +14,8 @@ import { InventarioComponent } from './administration/pages/inventario/inventari
 import { ContactosComponent } from './administration/pages/welcome/contactos/contactos.component';
 import { ControlOperacionesComponent } from './administration/pages/operaciones/operativo/control-operaciones/control-operaciones.component';
 import { ControlHectareaComponent } from './administration/pages/operaciones/hectarea/control-hectarea/control-hectarea.component';
+import { GraficoPastelComponent } from './report/grafico-pastel-inventario/grafico-pastel-inventario.component';
+import { GraficoPastelOperativoComponent } from './report/grafico-pastel-operativo/grafico-pastel-operativo.component';
 
 export const routes: Routes = [
     {
@@ -51,6 +53,12 @@ export const routes: Routes = [
             },
             {
                 path: 'control-hectarea', component: ControlHectareaComponent
+            },
+            {
+                path: 'grafico-inventario', component: GraficoPastelComponent
+            },
+            {
+                path: 'grafico-operativo', component: GraficoPastelOperativoComponent
             },
         ]
     },

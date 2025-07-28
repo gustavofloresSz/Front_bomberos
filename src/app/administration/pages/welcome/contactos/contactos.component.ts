@@ -1,11 +1,13 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-contactos',
   imports: [
     NgFor,
-    CommonModule
+    CommonModule,
+    RouterLink
   ],
   templateUrl: './contactos.component.html',
 })
