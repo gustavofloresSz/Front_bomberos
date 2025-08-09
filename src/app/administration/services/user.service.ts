@@ -50,9 +50,7 @@ export class UserService {
     return this.http.get(`${this.apiUrl}/getUsuariosEnviaronMensajes?page=${page}&size=${size}`, { headers });
   }
 
-  getPaginatedUsers(page: number = 0, size: number = 10) {
-    return this.http.get(`${this.apiUrl}/getPageUsers?page=${page}&size=${size}`);
-  }
+
 
   //metodos crud
   getFullUsers() {

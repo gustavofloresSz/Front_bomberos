@@ -39,7 +39,7 @@ export class GraficoPastelComponent implements OnInit {
   public pieChartType: 'pie' = 'pie';
   equiposDisponibles: any[] = [];
   equipoSeleccionado: any = null;
-  tiposDisponibles: string[] = ['Herramientas', 'Equipo', 'Transporte','No-Tripulados','Combustible'];
+  tiposDisponibles: string[] = ['Herramientas', 'Equipo', 'Transporte','No-Tripulados','Sanidad','Combustible'];
   tipoSeleccionado: string = '';
 
   equipoFiltro: string = '';

@@ -5,11 +5,11 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-welcome',
   imports: [
-    MatButton,
     RouterModule,
 
   ],
   templateUrl: './welcome.component.html',
+  styleUrl:'./welcome.component.css'
 })
 export class WelcomeComponent {
 

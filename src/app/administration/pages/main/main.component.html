@@ -38,13 +38,15 @@
             <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'No-Tripulados' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
               <mat-icon>flight</mat-icon> No Tripulados
             </a>
+             <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'Sanidad' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
+              <mat-icon>medication </mat-icon> Sanidad
+            </a>
             <a [routerLink]="['/main/inventario']" [queryParams]="{ tipo: 'Combustible' }" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
               <mat-icon>local_gas_station</mat-icon> Combustible
             </a>
             <a [routerLink]="['/main/grafico-inventario']" class="flex items-center gap-2 p-2 rounded hover:bg-green-700">
               <mat-icon>pie_chart</mat-icon> Reporte Grafico Logistica
             </a>
-            
           </div>
 
           <button (click)="operacionesAbierta = !operacionesAbierta" class="flex items-center w-full p-3 rounded hover:bg-green-800 transition">

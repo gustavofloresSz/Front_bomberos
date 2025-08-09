@@ -13,7 +13,6 @@ export class InventarioService {
     nombre: string;
     cantidad_total: number;
     cantidad_uso: number;
-    seccionId: number;
     tipo: string;
   }) {
     return this.http.post(`${this.apiUrl}/addInventario`, inventario);
@@ -33,7 +32,6 @@ export class InventarioService {
     nombre?: string;
     cantidad_total?: number;
     cantidad_uso?: number;
-    seccionId?: number;
     tipo?: string;
   }) {
     return this.http.put(`${this.apiUrl}/updateInventario/${id}`, inventario);

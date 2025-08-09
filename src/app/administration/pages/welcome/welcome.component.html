@@ -8,23 +8,20 @@
   </div>
 
   <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-    <button mat-flat-button color="warn"
-            [routerLink]="['/contactos']"
-            class="w-full sm:w-auto flex items-center justify-center px-4 py-2 rounded-md transition">
+    <button class="w-full sm:w-auto flex items-center justify-center px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white transition duration-300 shadow-md"
+        [routerLink]="['/contactos']">
       <span class="material-icons mr-2">phone</span>
       Contactos
     </button>
 
-    <button mat-flat-button color="warn"
-            [routerLink]="['/comentario']"
-            class="w-full sm:w-auto flex items-center justify-center px-4 py-2 rounded-md transition">
+    <button class="w-full sm:w-auto flex items-center justify-center px-4 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white transition duration-300 shadow-md"
+            [routerLink]="['/comentario']">
       <span class="material-icons mr-2">warning_amber</span>
       Alerta de Incendios
     </button>
 
-    <button mat-flat-button color="accent"
-            [routerLink]="['/main/seccion']"
-            class="w-full sm:w-auto flex items-center justify-center px-4 py-2 rounded-md transition">
+    <button class="w-full sm:w-auto flex items-center justify-center px-4 py-2 rounded-md bg-yellow-600 hover:bg-yellow-700 text-white transition duration-300 shadow-md"
+            [routerLink]="['/main/seccion']">
       <span class="material-icons mr-2">login</span>
       Iniciar Sesión
     </button>

@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { InventarioService } from '../../../services/inventario.service';
-import { SeccionService } from '../../../services/seccion.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,12 +26,10 @@ import { MatSelectModule } from '@angular/material/select';
 export class CrudInventarioComponent implements OnInit {
   private dialogRef = inject(MatDialogRef<CrudInventarioComponent>);
   private inventarioService = inject(InventarioService);
-  private seccionService = inject(SeccionService);
   private fb = inject(FormBuilder);
   public data = inject(MAT_DIALOG_DATA);
 
   form!: FormGroup;
-  secciones: any[] = [];
   modo: 'crear' | 'editar' | 'eliminar';
 
   constructor() {
@@ -53,15 +50,9 @@ export class CrudInventarioComponent implements OnInit {
         Validators.required,
         Validators.min(0),
         Validators.pattern(/^\d+$/)
-      ]],
-      seccion: [inv?.seccion?.id || '', Validators.required],
+      ]]
     }, {
       validators: this.validarUsoMenorIgualTotal()
-    });
-
-    this.seccionService.getSeccion().subscribe({
-      next: (res: any) => this.secciones = res,
-      error: (err) => console.error('Error cargando secciones:', err)
     });
   }
 
@@ -92,7 +83,6 @@ export class CrudInventarioComponent implements OnInit {
       nombre: raw.nombre,
       cantidad_total: raw.cantidad_total,
       cantidad_uso: raw.cantidad_uso,
-      seccionId: raw.seccion,
       tipo: this.data.tipo,
     };
 

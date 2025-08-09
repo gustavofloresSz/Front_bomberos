@@ -23,7 +23,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class InventarioComponent implements OnInit {
   inventario: any[] = [];
-  displayedColumns: string[] = ['nro', 'nombre', 'cantidad_total', 'cantidad_uso', 'cantidad_disponible', 'seccion', 'editar', 'eliminar'];
+  displayedColumns: string[] = ['nro', 'nombre', 'cantidad_total', 'cantidad_uso', 'cantidad_disponible', 'editar', 'eliminar'];
   busqueda = '';
 
   private inventarioService = inject(InventarioService);
@@ -98,8 +98,7 @@ export class InventarioComponent implements OnInit {
 
   coincideBusqueda(item: any): boolean {
     const termino = this.busqueda.trim().toLowerCase();
-    return item.nombre.toLowerCase().includes(termino) ||
-           item.seccion?.name?.toLowerCase().includes(termino);
+    return item.nombre.toLowerCase().includes(termino)
   }
 
   limpiarBusqueda() {

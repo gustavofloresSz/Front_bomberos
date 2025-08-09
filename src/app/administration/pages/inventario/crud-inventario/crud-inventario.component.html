@@ -37,14 +37,6 @@
     <div *ngIf="errorUsoMayorTotal" class="text-red-600 text-sm px-2">
       La cantidad en uso no puede ser mayor a la cantidad total.
     </div>
-
-    <mat-form-field class="w-full">
-      <mat-label>Sección</mat-label>
-      <mat-select formControlName="seccion">
-        <mat-option *ngFor="let sec of secciones" [value]="sec.id">{{ sec.name }}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="form.get('seccion')?.hasError('required')">Sección requerida</mat-error>
-    </mat-form-field>
   </div>
 
 </div>
