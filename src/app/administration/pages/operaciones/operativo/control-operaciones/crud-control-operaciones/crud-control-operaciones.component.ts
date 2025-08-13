@@ -40,10 +40,12 @@ export class CrudControlOperacionesComponent implements OnInit {
       responsable: [control.responsable || '', Validators.required],
       efectivo_total: [control.efectivo_total || null],
       efectivo_uso: [control.efectivo_uso || null],
-      lugar: [control.lugar || '', Validators.required],
+      lugar: [control.lugar || ''],
       distancia_kms: [control.distancia_kms || null],
       material_equipo: [control.material_equipo || ''],
       novedades: [control.novedades || ''],
+    }, {
+      validators: this.validarEfectivo()
     });
 
     if (this.modo === 'eliminar') {
@@ -51,6 +53,22 @@ export class CrudControlOperacionesComponent implements OnInit {
     }
   }
 
+  private validarEfectivo() {
+    return (group: FormGroup) => {
+      const total = group.get('efectivo_total')?.value;
+      const uso = group.get('efectivo_uso')?.value;
+
+      if (total != null && uso != null && uso > total) {
+        group.get('efectivo_uso')?.setErrors({ mayorQueTotal: true });
+      } else {
+        // Si no hay error, lo eliminamos
+        if (group.get('efectivo_uso')?.hasError('mayorQueTotal')) {
+          group.get('efectivo_uso')?.setErrors(null);
+        }
+      }
+      return null;
+    };
+  }
   confirmarEdicion() {
     if (this.form.invalid) return;
 

@@ -133,7 +133,7 @@ export class GraficoPastelOperativoComponent implements OnInit {
         ]
       };
 
-      this.chartOptions.plugins!.title!.text = `${this.tipoSeleccionado} en ${this.lugarSeleccionado} - Efectivo Total: ${totalEfectivo}`;
+      this.chartOptions.plugins!.title!.text = `${this.tipoSeleccionado} - ${this.lugarSeleccionado} - Efectivo Total: ${totalEfectivo}`;
 
       setTimeout(() => {
         if (this.chart) this.chart.update();

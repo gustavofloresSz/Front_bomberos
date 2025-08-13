@@ -1,4 +1,4 @@
 export const environment = {
-    apiUrl: 'http://localhost:3000',
+    apiUrl: 'http://localhost:4000/api',
     socketUrl:'http://localhost:4000'
 };
