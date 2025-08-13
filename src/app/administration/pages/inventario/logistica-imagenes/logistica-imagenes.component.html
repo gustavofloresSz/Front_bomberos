@@ -1,0 +1,12 @@
+<button mat-flat-button color="accent" (click)="cerrarVista()" class="mb-4">
+  <mat-icon class="mr-1">arrow_back</mat-icon> Volver
+</button>
+
+<div class="overflow-y-auto h-[calc(100vh-150px)]">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div *ngFor="let img of imagenesLogistica" class="border rounded shadow hover:shadow-lg transition overflow-hidden">
+      <img [src]="img.ruta" [alt]="img.nombre" class="w-full h-48 object-cover" />
+      <div class="p-2 text-center font-semibold">{{ img.nombre }}</div>
+    </div>
+  </div>
+</div>

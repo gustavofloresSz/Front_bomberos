@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../environments/environments';
 import { SocketService } from '../../socket/socket.service';
 import { map, switchMap, tap } from 'rxjs';
 import { UserService } from './user.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

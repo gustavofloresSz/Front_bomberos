@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { CrudInventarioComponent } from './crud-inventario/crud-inventario.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { LogisticaImagenesComponent } from "./logistica-imagenes/logistica-imagenes.component";
 
 @Component({
   selector: 'app-inventario',
@@ -17,8 +18,9 @@ import { ActivatedRoute } from '@angular/router';
     MatIconModule,
     MatTableModule,
     CommonModule,
-    FormsModule
-  ],
+    FormsModule,
+    LogisticaImagenesComponent
+],
   templateUrl: './inventario.component.html',
 })
 export class InventarioComponent implements OnInit {
@@ -26,9 +28,10 @@ export class InventarioComponent implements OnInit {
   displayedColumns: string[] = ['nro', 'nombre', 'cantidad_total', 'cantidad_uso', 'cantidad_disponible', 'editar', 'eliminar'];
   busqueda = '';
 
+mostrarImagenes = false;
+
   private inventarioService = inject(InventarioService);
   private dialog = inject(MatDialog);
-
   private route = inject(ActivatedRoute);
   tipoSeleccionado?: string;
 
@@ -37,6 +40,18 @@ export class InventarioComponent implements OnInit {
       this.tipoSeleccionado = params['tipo'];
       this.obtenerInventario(this.tipoSeleccionado);
     });
+  }
+
+  // Getter para el inventario filtrado (usado en la vista de transporte)
+  get inventarioFiltrado(): any[] {
+    if (!this.busqueda.trim()) {
+      return this.inventario;
+    }
+    
+    const termino = this.busqueda.trim().toLowerCase();
+    return this.inventario.filter(item => 
+      item.nombre.toLowerCase().includes(termino)
+    );
   }
 
   obtenerInventario(tipo?: string) {
@@ -50,7 +65,6 @@ export class InventarioComponent implements OnInit {
       }
     });
   }
-
   abrirDialogoCrear() {
     const dialogRef = this.dialog.open(CrudInventarioComponent, {
       data: { 
@@ -98,7 +112,7 @@ export class InventarioComponent implements OnInit {
 
   coincideBusqueda(item: any): boolean {
     const termino = this.busqueda.trim().toLowerCase();
-    return item.nombre.toLowerCase().includes(termino)
+    return item.nombre.toLowerCase().includes(termino);
   }
 
   limpiarBusqueda() {

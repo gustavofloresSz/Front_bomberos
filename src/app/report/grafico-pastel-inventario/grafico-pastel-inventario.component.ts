@@ -98,7 +98,7 @@ export class GraficoPastelComponent implements OnInit {
 
     this.chartData = {
       labels: [
-        `(${equipo.nombre}) En uso`,
+        `(${equipo.nombre}) Desplegado`,
         `(${equipo.nombre}) Disponibles`
       ],
       datasets: [

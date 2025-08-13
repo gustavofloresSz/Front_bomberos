@@ -4,22 +4,38 @@
       <span class="material-icons text-yellow-400">contact_phone</span>
       Contactos de Emergencia
     </h1>
+
     <div class="mb-4">
       <a [routerLink]="['/welcome']"
          class="inline-flex items-center text-yellow-300 hover:text-yellow-200 transition font-medium">
         <span class="material-icons mr-1">arrow_back</span> Volver
       </a>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div *ngFor="let grupo of contactos" class="bg-[#3b5b3c] p-6 rounded-lg shadow border-l-4" [ngClass]="grupo.color">
+
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+      <div *ngFor="let grupo of contactos"
+           class="bg-[#3b5b3c] p-6 rounded-lg shadow border-l-4"
+           [ngClass]="grupo.color">
+
         <h2 class="text-xl font-semibold text-yellow-300 flex items-center gap-2 mb-4">
           <span class="material-icons">{{ grupo.icono }}</span>
           {{ grupo.categoria }}
         </h2>
+
         <ul class="space-y-2">
-          <li *ngFor="let item of grupo.items" class="flex justify-between items-center bg-[#4a6b4b] px-4 py-2 rounded">
-            <span>{{ item.nombre }}</span>
-            <span class="text-yellow-200 font-mono">{{ item.telefono }}</span>
+          <li *ngFor="let item of grupo.items" class="bg-[#4a6b4b] px-4 py-2 rounded">
+            <!-- Nombre -->
+            <span class="block font-semibold text-yellow-200">{{ item.nombre }}</span>
+
+            <!-- Cargo -->
+            <span *ngIf="item.cargo" class="block text-sm text-gray-200 italic">{{ item.cargo }}</span>
+
+            <!-- Datos adicionales en una sola columna -->
+            <span *ngIf="item.departamento" class="block text-sm"><b>Departamento:</b> {{ item.departamento }}</span>
+            <span *ngIf="item.municipio" class="block text-sm"><b>Municipio:</b> {{ item.municipio }}</span>
+            <span class="block text-sm"><b>Tel.:</b> {{ item.telefono }}</span>
+            <span *ngIf="item.institucion" class="block text-sm"><b>Institución:</b> {{ item.institucion }}</span>
+            <span *ngIf="item.direccion" class="block text-sm"><b>Direccion:</b> {{ item.direccion }}</span>
           </li>
         </ul>
       </div>
