@@ -53,6 +53,16 @@ export class ContactosComponent {
       icono: 'account_balance',
       color: 'bg-yellow-700',
       items: [
+        { nombre: 'Lic. Celin Jiménez Roca', cargo: 'Subgobernador de San Ignacio de Velasco', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Ignacio', telefono: '72548712', institucion: 'Sub gobernación de San Ignacio de Velasco' },
+        { nombre: 'Lic. Carlos Ruddy Dorado Flores', cargo: 'Alcalde del Municipio de San Ignacio de Velasco', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Ignacio', telefono: '64324243', institucion: 'Gobierno Autónomo Municipal de San Ignacio de Velasco' },
+        { nombre: 'Lic. Mauricio Viera Canido', cargo: 'Alcalde del Municipio de Concepción', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - Concepción', telefono: '74553454', institucion: 'Gobierno Autónomo Municipal de Concepción' },
+        { nombre: 'Lic. Pedro Damián Dorado López', cargo: 'Alcalde del Municipio de San Miguel de Velasco', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Miguel', telefono: '76352355', institucion: 'Gobierno Autónomo Municipal de San Miguel de Velasco' },
+        { nombre: 'Lic. José Marcos Méndez Mattos', cargo: 'Concejal del Municipio de San Ignacio de Velasco', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Ignacio', telefono: '75345254', institucion: 'Consejo Municipal de San Ignacio de Velasco' },
+        { nombre: 'Sra. Beidy Cabrera Ramos', cargo: 'Concejal del Municipio de San Ignacio de Velasco', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Ignacio', telefono: '64642346', institucion: 'Consejo Municipal de San Ignacio de Velasco' },
+        { nombre: 'Lic. Cristian Méndez Roca', cargo: 'Concejal del Municipio de San Ignacio de Velasco', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Ignacio', telefono: '74246654', institucion: 'Consejo Municipal de San Ignacio de Velasco' },
+        { nombre: 'Dr. Miguel Durex Antelo', cargo: 'Concejal del Municipio de San Ignacio de Velasco', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Ignacio', telefono: '74264455', institucion: 'Consejo Municipal de San Ignacio de Velasco' },
+        { nombre: 'Cnl. DEAP. Jhonny Ortuño Cartagena', cargo: 'Comandante de la Policía de Frontera', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Ignacio', telefono: '72143422', institucion: 'Policía de Frontera de Municipio de San Ignacio de Velasco' },
+
         { nombre: 'Lic. Oscar Montes Barzón', cargo: 'Gobernador del Departamento', departamento: 'Tarija', municipio: 'Provincia Cercado', telefono: '72985022', institucion: 'Gobierno Autónomo Departamental de Tarija' },
         { nombre: 'Dr. Johnny Torrez Terzó', cargo: 'Alcalde Municipal de la provincia Cercado', departamento: 'Tarija', municipio: 'Provincia Cercado', telefono: '71717014', institucion: 'Gobierno Autónomo Municipal de la provincia Cercado' },
         { nombre: 'Dr. William Guerrero', cargo: 'Alcalde Municipal de Padcaya', departamento: 'Tarija', municipio: 'Provincia Avilés', telefono: '72945672', institucion: 'Gobierno Autónomo Municipal de Padcaya' },
