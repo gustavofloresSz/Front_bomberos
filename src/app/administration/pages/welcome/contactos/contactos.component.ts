@@ -53,7 +53,7 @@ export class ContactosComponent {
       icono: 'account_balance',
       color: 'bg-yellow-700',
       items: [
-        { nombre: 'Lic. Celin Jiménez Roca', cargo: 'Subgobernador de San Ignacio de Velasco', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Ignacio', telefono: '72548712', institucion: 'Sub gobernación de San Ignacio de Velasco' },
+        { nombre: 'Lic. Celin Jiménez Roca', cargo: 'Sub gobernador de San Ignacio de Velasco', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Ignacio', telefono: '72548712', institucion: 'Sub gobernación de San Ignacio de Velasco' },
         { nombre: 'Lic. Carlos Ruddy Dorado Flores', cargo: 'Alcalde del Municipio de San Ignacio de Velasco', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Ignacio', telefono: '64324243', institucion: 'Gobierno Autónomo Municipal de San Ignacio de Velasco' },
         { nombre: 'Lic. Mauricio Viera Canido', cargo: 'Alcalde del Municipio de Concepción', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - Concepción', telefono: '74553454', institucion: 'Gobierno Autónomo Municipal de Concepción' },
         { nombre: 'Lic. Pedro Damián Dorado López', cargo: 'Alcalde del Municipio de San Miguel de Velasco', departamento: 'Santa Cruz', municipio: 'Provincia Velasco - San Miguel', telefono: '76352355', institucion: 'Gobierno Autónomo Municipal de San Miguel de Velasco' },
